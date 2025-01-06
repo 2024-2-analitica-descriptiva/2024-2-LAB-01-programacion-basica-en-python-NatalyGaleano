@@ -26,37 +26,37 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
-import csv
-import os
-from collections import defaultdict
-
-#Leer archivo
-df = open("files/input/data.csv","r").readlines()
-
-#1. Limpiar los datos
-
-# Remplazar  salto de línea y separar data para poder tener una lista de listas
-df = [z.replace('\n', '')for z in df]
-df = [z.split("\t") for z in df]
-
-df= [[item[4]] for item in df]
-
-df= [x[0].split(",") for x in df ]
-
-values_by_key = defaultdict(list)
-
-for row in df:
-
-    for item in row:
-        key, value = item.split(":")
-        values_by_key[key].append(int(value))
-
-# Paso 2: Calcular el mínimo y máximo para cada clave
-results = [(key, min(values), max(values)) for key, values in values_by_key.items()]
-
-results= sorted(results)
-# Paso 3: Mostrar resultados
-print(results)
+    import csv
+    import os
+    from collections import defaultdict
+    
+    #Leer archivo
+    df = open("files/input/data.csv","r").readlines()
+    
+    #1. Limpiar los datos
+    # Remplazar  salto de línea y separar data para poder tener una lista de listas
+    df = [z.replace('\n', '')for z in df]
+    df = [z.split("\t") for z in df]
+    
+    df= [[item[4]] for item in df]
+    df= [x[0].split(",") for x in df ]
+    
+    values_by_key = defaultdict(list)
+    
+    for row in df:
+        
+        for item in row:
+            key, value = item.split(":")
+            values_by_key[key].append(int(value))
+    
+    # Paso 2: Calcular el mínimo y máximo para cada clave
+    results = [(key, min(values), max(values)) for key, values in values_by_key.items()]
+    
+    results= sorted(results)
+    
+    # Paso 3: Mostrar resultados
+    return(results)
+print(pregunta_06())
 
 
 

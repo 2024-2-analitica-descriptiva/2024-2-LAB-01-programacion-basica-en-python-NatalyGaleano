@@ -15,3 +15,34 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    import csv
+    import os
+    from collections import defaultdict
+
+    # Leer archivo
+    with open("files/input/data.csv", "r") as file:
+        df = file.readlines()
+
+    # Crear un diccionario para acumular los valores
+
+    sumas = defaultdict(int)
+    
+    for linea in df:
+        # Eliminar espacios extraños al principio y final de la línea
+        linea = linea.strip()
+        
+        # Dividir la línea por tabulaciones
+        columnas = linea.split("\t")
+
+        letra_columna_1 = columnas[0]
+
+        Valor_columna_5 = [int(x.split(":")[1]) for x in columnas[4].split(",")]
+        suma_columna_5 = sum( Valor_columna_5)
+        
+        sumas[letra_columna_1] += suma_columna_5
+
+    resultado = dict(sorted(sumas.items()))
+
+    return (resultado)
+    
+print(pregunta_12())

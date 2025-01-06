@@ -25,3 +25,33 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    import csv
+    import os
+    from collections import defaultdict
+    
+    #Leer archivo
+    df = open("files/input/data.csv","r").readlines()
+    
+    #1. Limpiar los datos
+    # Remplazar  salto de línea y separar data para poder tener una lista de listas
+    df = [z.replace('\n', '')for z in df]
+    df = [z.split("\t") for z in df]
+    
+    
+
+    # Diccionario para almacenar resultados
+    result = {}
+
+    for row in df:
+        col1 = row[0]  # Letra (columna 1)
+        col2 = int(row[1])  # Valor único de la columna 2
+    
+        if col2 not in result:
+            result[col2] = []
+        result[col2].append(col1)
+            
+        # Convertir resultados a una lista de tuplas
+    output = sorted(result.items())  # Ordenar por clave
+    return(output)
+
+print(pregunta_07())

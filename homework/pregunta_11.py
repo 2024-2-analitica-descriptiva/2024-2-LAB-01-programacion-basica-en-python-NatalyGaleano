@@ -16,3 +16,38 @@ def pregunta_11():
 
 
     """
+    import csv
+    import os
+    from collections import defaultdict
+
+    # Leer archivo
+    with open("files/input/data.csv", "r") as file:
+        df = file.readlines()
+
+    # Crear un diccionario para acumular los valores
+    sumas = defaultdict(int)
+    
+    for linea in df:
+        # Eliminar espacios extraños al principio y final de la línea
+        linea = linea.strip()
+        
+        # Dividir la línea por tabulaciones
+        columnas = linea.split("\t")
+        
+        # Obtener el valor de la columna 2 como entero
+        valor_columna_2 = int(columnas[1])
+        
+        # Obtener las letras de la columna 4
+        letras_columna_4 = columnas[3].split(",")
+        
+        # Sumar el valor a cada letra en el diccionario
+        for letra in letras_columna_4:
+            sumas[letra] += valor_columna_2
+    
+    # Convertir el diccionario a un diccionario ordenado por clave
+    resultado = dict(sorted(sumas.items()))
+    
+    return (resultado)
+
+print(pregunta_11())
+    
